@@ -29,7 +29,6 @@ const updateLocalStorage = () => {
 
 //Adding a task :
 const addTask = (text) => {
-  //Create new list item for task
   const taskItem = document.createElement("li");
   taskItem.classList.add("taskItemStyling");
 
@@ -56,6 +55,7 @@ const addTask = (text) => {
   });
 
   ////////////////////////////////////
+  //GOAL For later:
   //Trying to make a deadline countdown:
   /*
   //Deadline countdown
