@@ -16,6 +16,8 @@ const backspace = 8;
 //Empty Array storage for multiple tasks
 let myTasks = [];
 
+////////////////////////
+
 //Update local storage to use for each task entered.
 //Used in the event handler
 const updateLocalStorage = () => {
