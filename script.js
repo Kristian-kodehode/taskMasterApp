@@ -95,12 +95,10 @@ const addTask = (text) => {
       taskItem.style.backgroundColor = "#f4828c";
       taskItem.style.color = "white";
       taskItem.classList.add("shake-animation");
-      //deleteButton.style.backgroundColor = "";
     } else {
       taskItem.style.backgroundColor = "";
       taskItem.style.color = "";
       taskItem.classList.remove("shake-animation");
-      //deleteButton.style.backgroundColor = "#fdcfb7";
     }
   });
 
@@ -113,14 +111,13 @@ const addTask = (text) => {
     checkBox,
     text,
     taskDate: taskDate.textContent,
-    // deadlineDate: deadlineDate.textContent,
   });
 };
 
 ////////////////////////
 
 //Loading local storage for every list item.
-//Needs to be located here because addTask is a arrow function.
+//Located here because addTask = arrow function.
 const loadFromLocalStorage = () => {
   const todos = JSON.parse(localStorage.getItem("todo")) || [];
 
@@ -134,12 +131,10 @@ const loadFromLocalStorage = () => {
         taskItem.style.backgroundColor = "#f4828c";
         taskItem.style.color = "white";
         taskItem.classList.add("shake-animation");
-        //deleteButton.style.backgroundColor = "";
       } else {
         taskItem.style.backgroundColor = "";
         taskItem.style.color = "";
         taskItem.classList.remove("shake-animation");
-        //deleteButton.style. = "#fdcfb7";
       }
     });
   }
