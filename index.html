@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>Taskmaster App</title>
+  </head>
+  <body>
+    <div class="container">
+      <form action="">
+        <h3>Taskmaster</h3>
+        <textarea
+          name=""
+          id="inputType"
+          cols="25"
+          rows="6"
+          maxlength="120"
+          placeholder="Enter task"
+        ></textarea>
+      </form>
+      <div class="submitButtons">
+        <input
+          type="submit"
+          id="inputSubmit"
+          class="input-submit"
+          value="Add Task"
+        />
+        <button id="deleteButton" class="input-submit">Delete Task</button>
+      </div>
+      <ul id="taskList"></ul>
+    </div>
+  </body>
+</html>
