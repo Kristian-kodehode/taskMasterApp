@@ -81,6 +81,14 @@ const addTask = (text) => {
   taskText.addEventListener("click", () => {
     taskText.contentEditable = true;
     taskText.focus();
+
+    taskText.addEventListener("blur", () => {
+      const index = myTasks.findIndex((task) => task.taskText === taskText);
+      if (index !== -1) {
+        myTasks[index].text = taskText.textContent;
+        updateLocalStorage();
+      }
+    });
   });
 
   //Append the checkbox and task text to the task item
@@ -141,9 +149,12 @@ const loadFromLocalStorage = () => {
     });
   }
 };
-loadFromLocalStorage();
+// loadFromLocalStorage();
 
 ///////////////////////
+window.onload = () => {
+  loadFromLocalStorage();
+};
 
 //Delete one or several task(s) :
 const deleteTask = () => {
@@ -186,6 +197,7 @@ deleteButton.addEventListener("click", () => {
   updateLocalStorage();
 });
 //Backspace keydown to delete item
+
 taskList.addEventListener("keydown", (event) => {
   if (event.keyCode === backspace) {
     event.preventDefault();
