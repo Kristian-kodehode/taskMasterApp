@@ -147,7 +147,6 @@ loadFromLocalStorage();
 
 //Delete one or several task(s) :
 const deleteTask = () => {
-  //Remove tasks where checkbox is checked.
   for (const { checkBox, taskItem } of myTasks)
     if (checkBox.checked) {
       taskItem.remove();
