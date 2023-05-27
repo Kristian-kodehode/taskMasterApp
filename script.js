@@ -159,6 +159,11 @@ const deleteTask = () => {
 ///////////////////////
 
 //Event Handlers
+taskInput.addEventListener("input", () => {
+  addTaskBtn.disabled = taskInput.value === "";
+});
+
+//
 addTaskBtn.addEventListener("click", () => {
   addTask(taskInput.value);
   updateLocalStorage();
