@@ -1,6 +1,9 @@
 "use strict";
 
 ////////////////////////
+window.onload = () => {
+  loadFromLocalStorage();
+};
 
 //Fetching html elements
 const taskInput = document.querySelector("#inputType");
@@ -81,14 +84,6 @@ const addTask = (text) => {
   taskText.addEventListener("click", () => {
     taskText.contentEditable = true;
     taskText.focus();
-
-    taskText.addEventListener("blur", () => {
-      const index = myTasks.findIndex((task) => task.taskText === taskText);
-      if (index !== -1) {
-        myTasks[index].text = taskText.textContent;
-        updateLocalStorage();
-      }
-    });
   });
 
   //Append the checkbox and task text to the task item
@@ -152,9 +147,9 @@ const loadFromLocalStorage = () => {
 // loadFromLocalStorage();
 
 ///////////////////////
-window.onload = () => {
-  loadFromLocalStorage();
-};
+//  window.onload = () => {
+//    loadFromLocalStorage();
+//  };
 
 //Delete one or several task(s) :
 const deleteTask = () => {
@@ -175,7 +170,7 @@ taskInput.addEventListener("input", () => {
 
 //
 addTaskBtn.addEventListener("click", (event) => {
-  if (taskInput.value.trim() === "") {
+  if (taskInput.value === "") {
     event.preventDefault();
   } else {
     addTask(taskInput.value);
