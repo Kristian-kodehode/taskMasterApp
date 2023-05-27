@@ -163,9 +163,14 @@ taskInput.addEventListener("input", () => {
 });
 
 //
-addTaskBtn.addEventListener("click", () => {
-  addTask(taskInput.value);
-  updateLocalStorage();
+addTaskBtn.addEventListener("click", (event) => {
+  if (taskInput.value.trim() === "") {
+    event.preventDefault();
+  } else {
+    addTask(taskInput.value);
+    updateLocalStorage();
+    taskInput.value = "";
+  }
 });
 //Enter keydown to add item
 taskInput.addEventListener("keydown", (event) => {
