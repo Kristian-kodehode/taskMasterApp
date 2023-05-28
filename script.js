@@ -35,6 +35,9 @@ const updateLocalStorage = () => {
 
 const addTask = (text) => {
   const taskItem = document.createElement("li");
+  //Takes line breaks created with "enter" into account.
+  taskItem.style.whiteSpace = "pre-line";
+  //Related to styling of taskItem.
   taskItem.classList.add("taskItemStyling");
 
   ////////////////////////////////////
