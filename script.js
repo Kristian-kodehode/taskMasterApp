@@ -48,6 +48,9 @@ const addTask = (text) => {
   const taskText = document.createElement("span");
   taskText.textContent = text;
 
+  ////////////////////////////////////
+  //DATE AND TIME
+
   const currentDate = new Date();
   //Sets origin date for item
   const taskDate = document.createElement("div");
@@ -58,6 +61,7 @@ const addTask = (text) => {
     dateStyle: `medium`,
     timeStyle: `short`,
   });
+  ////////////////////////////////////
 
   ////////////////////////////////////
   //GOAL For later:
