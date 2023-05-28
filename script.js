@@ -1,10 +1,11 @@
 "use strict";
 
 ////////////////////////
-window.onload = () => {
-  loadFromLocalStorage();
-};
+// window.onload = () => {
+//   loadFromLocalStorage();
+// };
 
+////////////////////////////////////
 //Fetching html elements
 const taskInput = document.querySelector("#inputType");
 const addTaskBtn = document.querySelector("#inputSubmit");
@@ -12,17 +13,16 @@ const taskList = document.querySelector("#taskList");
 const deleteButton = document.querySelector("#deleteButton");
 
 ////////////////////////
+//DECLARE
 
-//Declare variables and or Functions
 const enter = 13;
 const backspace = 8;
 //Empty Array storage for multiple tasks
 let myTasks = [];
 
 ////////////////////////
+//FUNCTION : UPDATE LOCALSTORAGE FOR EACH TASK ADDED
 
-//Update local storage to use for each task entered.
-//Used in the event handler
 const updateLocalStorage = () => {
   localStorage.setItem(
     "todo",
@@ -31,20 +31,24 @@ const updateLocalStorage = () => {
 };
 
 ////////////////////////
+//FUNCTION : ADD TASK
 
-//Adding a task :
 const addTask = (text) => {
   const taskItem = document.createElement("li");
   taskItem.classList.add("taskItemStyling");
 
-  //Create checkbox for task
+  ////////////////////////////////////
+  //CREATE CHECKBOX
+
   const checkBox = document.createElement("input");
   checkBox.type = "checkbox";
   checkBox.name = "taskCheckBox";
   checkBox.id = "myCheckbox";
   checkBox.classList.add("custom-checkbox");
 
-  //Create span element for task text
+  ////////////////////////////////////
+  //SPAN FOR EACH TASK
+
   const taskText = document.createElement("span");
   taskText.textContent = text;
 
@@ -61,44 +65,38 @@ const addTask = (text) => {
     dateStyle: `medium`,
     timeStyle: `short`,
   });
-  ////////////////////////////////////
 
   ////////////////////////////////////
-  //GOAL For later:
-  //Trying to make a deadline countdown:
-  /*
-  //Deadline countdown
-  const deadlineDate = new Date(currentDate + 7).getTime();
-  let x = setInterval(function () {
-    //
-    let distance = deadlineDate - currentDate;
-    //
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(
-      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    //
-    deadlineDate.textContent = distance.toLocaleString();
-  });
-  */
-  ////////////////////////////////////
+  //DIRECTLY EDIT CREATED TASKTEXT
 
-  //Directly editing a task item text.
   taskText.addEventListener("click", () => {
     taskText.contentEditable = true;
     taskText.focus();
   });
 
-  //Append the checkbox and task text to the task item
+  ////////////////////////////////////
+  //UPDATES WITH LATEST TEXT EDIT
+
+  taskText.addEventListener("input", () => {
+    myTasks.forEach((task) => {
+      if (task.taskItem === taskItem) {
+        task.text = taskText.textContent;
+      }
+    });
+    updateLocalStorage();
+  });
+
+  ////////////////////////////////////
+  //APPENDS
+
   taskItem.appendChild(checkBox);
   taskItem.appendChild(taskText);
   taskItem.appendChild(taskDate);
-
-  //Add the new task to the task list
   taskList.appendChild(taskItem);
 
-  //Changes taskItem backgroundcolor when checkbox is checked.
+  ////////////////////////////////////
+  //CHECKBOX EVENTHANDLING w/STYLING
+
   checkBox.addEventListener("change", () => {
     if (checkBox.checked) {
       taskItem.style.backgroundColor = "#f4828c";
@@ -111,10 +109,14 @@ const addTask = (text) => {
     }
   });
 
-  //Clear the input field
+  ////////////////////////////////////
+  //CLEARS INPUT FIELD
+
   taskInput.value = "";
 
-  //Pushing all items to myTasks
+  ////////////////////////////////////
+  //PUSH ITEMS TO myTask
+
   myTasks.push({
     taskItem,
     checkBox,
@@ -124,9 +126,9 @@ const addTask = (text) => {
 };
 
 ////////////////////////
-
-//Loading local storage for every list item.
+//FUNCTION : LOAD LOCALSTORAGE FOR EACH ITEM CREATED
 //Located here because addTask = arrow function.
+
 const loadFromLocalStorage = () => {
   const todos = JSON.parse(localStorage.getItem("todo")) || [];
 
@@ -148,11 +150,11 @@ const loadFromLocalStorage = () => {
     });
   }
 };
-// loadFromLocalStorage();
+loadFromLocalStorage();
 
 ///////////////////////
+//FUNCTION : DELETE TASK
 
-//Delete one or several task(s) :
 const deleteTask = () => {
   for (const { checkBox, taskItem } of myTasks)
     if (checkBox.checked) {
@@ -163,8 +165,8 @@ const deleteTask = () => {
 };
 
 ///////////////////////
+//EVENT HANDLERS
 
-//Event Handlers
 taskInput.addEventListener("input", () => {
   addTaskBtn.disabled = taskInput.value === "";
 });
@@ -179,27 +181,33 @@ addTaskBtn.addEventListener("click", (event) => {
     taskInput.value = "";
   }
 });
+
+////////////////////////////////////
 //Enter keydown to add item
-taskInput.addEventListener("keydown", (event) => {
-  if (event.keyCode === enter) {
-    event.preventDefault();
-    addTask(taskInput.value);
-    updateLocalStorage();
-  }
-});
+
+// taskInput.addEventListener("keydown", (event) => {
+//   if (event.keyCode === enter) {
+//     event.preventDefault();
+//     addTask(taskInput.value);
+//     updateLocalStorage();
+//   }
+// });
 
 deleteButton.addEventListener("click", () => {
   deleteTask();
   updateLocalStorage();
 });
+
+////////////////////////////////////
 //Backspace keydown to delete item
 
-taskList.addEventListener("keydown", (event) => {
-  if (event.keyCode === backspace) {
-    event.preventDefault();
-    deleteTask();
-    updateLocalStorage();
-  }
-});
+// taskList.addEventListener("keydown", (event) => {
+//   if (event.keyCode === backspace) {
+//     event.preventDefault();
+//     deleteTask();
+//     updateLocalStorage();
+//   }
+// });
 
 ////////////////////////
+//KEYDOWNS NOT USED BECAUSE IT DIDNT REALLY MAKE THAT MUCH SENSE.
