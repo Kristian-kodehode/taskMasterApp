@@ -147,9 +147,6 @@ const loadFromLocalStorage = () => {
 // loadFromLocalStorage();
 
 ///////////////////////
-//  window.onload = () => {
-//    loadFromLocalStorage();
-//  };
 
 //Delete one or several task(s) :
 const deleteTask = () => {
