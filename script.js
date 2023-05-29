@@ -186,6 +186,9 @@ deleteButton.addEventListener("click", () => {
   updateLocalStorage();
 });
 
+////////////////////////
+//KEYDOWNS NOT USED BECAUSE IT DIDNT REALLY MAKE THAT MUCH SENSE.
+
 ////////////////////////////////////
 //Enter keydown to add item
 
@@ -207,6 +210,3 @@ deleteButton.addEventListener("click", () => {
 //     updateLocalStorage();
 //   }
 // });
-
-////////////////////////
-//KEYDOWNS NOT USED BECAUSE IT DIDNT REALLY MAKE THAT MUCH SENSE.
