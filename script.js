@@ -53,7 +53,7 @@ const addTask = (text) => {
   ////////////////////////////////////
   //DATE AND TIME
 
-  const currentDate = new Date();
+  let currentDate = new Date();
   //Sets origin date for item
   const taskDate = document.createElement("div");
   taskDate.style.fontSize = "12px";
@@ -64,14 +64,13 @@ const addTask = (text) => {
     timeStyle: `short`,
   });
 
-  const storedDate =
-    ////////////////////////////////////
-    //DIRECTLY EDIT CREATED TASKTEXT
+  ////////////////////////////////////
+  //DIRECTLY EDIT CREATED TASKTEXT
 
-    taskText.addEventListener("click", () => {
-      taskText.contentEditable = true;
-      taskText.focus();
-    });
+  taskText.addEventListener("click", () => {
+    taskText.contentEditable = true;
+    taskText.focus();
+  });
 
   ////////////////////////////////////
   //UPDATES WITH LATEST TEXT EDIT
