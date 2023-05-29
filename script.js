@@ -6,7 +6,8 @@
 // };
 
 ////////////////////////////////////
-//Fetching html elements
+//FETCH HTML ELEMENTS
+
 const taskInput = document.querySelector("#inputType");
 const addTaskBtn = document.querySelector("#inputSubmit");
 const taskList = document.querySelector("#taskList");
@@ -17,7 +18,6 @@ const deleteButton = document.querySelector("#deleteButton");
 
 const enter = 13;
 const backspace = 8;
-//Empty Array storage for multiple tasks
 let myTasks = [];
 
 ////////////////////////
@@ -127,7 +127,6 @@ const addTask = (text) => {
     taskDate: taskDate.textContent,
   });
 };
-
 ////////////////////////
 //FUNCTION : LOAD LOCALSTORAGE FOR EACH ITEM CREATED
 //Located here because addTask = arrow function.
