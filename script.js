@@ -1,10 +1,5 @@
 "use strict";
 
-////////////////////////
-// window.onload = () => {
-//   loadFromLocalStorage();
-// };
-
 ////////////////////////////////////
 //FETCH HTML ELEMENTS
 
@@ -69,13 +64,14 @@ const addTask = (text) => {
     timeStyle: `short`,
   });
 
-  ////////////////////////////////////
-  //DIRECTLY EDIT CREATED TASKTEXT
+  const storedDate =
+    ////////////////////////////////////
+    //DIRECTLY EDIT CREATED TASKTEXT
 
-  taskText.addEventListener("click", () => {
-    taskText.contentEditable = true;
-    taskText.focus();
-  });
+    taskText.addEventListener("click", () => {
+      taskText.contentEditable = true;
+      taskText.focus();
+    });
 
   ////////////////////////////////////
   //UPDATES WITH LATEST TEXT EDIT
