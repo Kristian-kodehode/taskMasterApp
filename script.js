@@ -178,7 +178,6 @@ const deleteTask = () => {
     if (checkBox.checked) {
       taskItem.remove();
     }
-  //Look through myTasks with filter method for checked boxes to be removed.
   myTasks = myTasks.filter((task) => !task.checkBox.checked);
 };
 
