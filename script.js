@@ -8,9 +8,7 @@ Klarte ikke å få dato og tid til å beholde
 sin originale dato og tid ved refresh page.
 
 2.
-Når en task er satt klar til å slettes resettes
-den til vanlig ved page refresh. Det gir forsåvidt
-mening at den gjør det, men det var ikke poenget.
+-
 
 Oppsumering.
 localStorage er fortsatt krevende. Jeg forstår 
