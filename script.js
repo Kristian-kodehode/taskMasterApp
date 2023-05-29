@@ -164,6 +164,7 @@ const deleteTask = () => {
 ///////////////////////
 //EVENT HANDLERS
 
+//
 taskInput.addEventListener("input", () => {
   addTaskBtn.disabled = taskInput.value === "";
 });
@@ -179,6 +180,12 @@ addTaskBtn.addEventListener("click", (event) => {
   }
 });
 
+//
+deleteButton.addEventListener("click", () => {
+  deleteTask();
+  updateLocalStorage();
+});
+
 ////////////////////////////////////
 //Enter keydown to add item
 
@@ -189,11 +196,6 @@ addTaskBtn.addEventListener("click", (event) => {
 //     updateLocalStorage();
 //   }
 // });
-
-deleteButton.addEventListener("click", () => {
-  deleteTask();
-  updateLocalStorage();
-});
 
 ////////////////////////////////////
 //Backspace keydown to delete item
