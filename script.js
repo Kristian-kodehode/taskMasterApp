@@ -71,7 +71,7 @@ const addTask = (text) => {
 
   ////////////////////////////////////
   //DATE AND TIME
-
+  /*
   let currentDate = new Date();
   const timeStamp = currentDate.toLocaleString([], {
     dateStyle: `medium`,
@@ -83,7 +83,7 @@ const addTask = (text) => {
   taskDate.style.marginTop = "0.5em";
   taskDate.style.fontWeight = "400";
   taskDate.textContent = timeStamp;
-
+*/
   ////////////////////////////////////
   //DIRECTLY EDIT CREATED TASKTEXT
 
@@ -110,7 +110,7 @@ const addTask = (text) => {
 
   taskItem.appendChild(checkBox);
   taskItem.appendChild(taskText);
-  taskItem.appendChild(taskDate);
+  // taskItem.appendChild(taskDate);
   taskList.appendChild(taskItem);
 
   ////////////////////////////////////
@@ -140,9 +140,7 @@ const addTask = (text) => {
     taskItem,
     checkBox,
     text,
-    // taskDate: taskDate.textContent,
     // taskDate,
-    timeStamp,
   });
 };
 ////////////////////////
