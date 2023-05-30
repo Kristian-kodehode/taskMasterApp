@@ -73,15 +73,16 @@ const addTask = (text) => {
   //DATE AND TIME
 
   let currentDate = new Date();
+  const timeStamp = currentDate.toLocaleString([], {
+    dateStyle: `medium`,
+    timeStyle: `medium`,
+  });
   //Sets origin date for item
   const taskDate = document.createElement("div");
   taskDate.style.fontSize = "12px";
   taskDate.style.marginTop = "0.5em";
   taskDate.style.fontWeight = "400";
-  taskDate.textContent = currentDate.toLocaleString([], {
-    dateStyle: `medium`,
-    timeStyle: `medium`,
-  });
+  taskDate.textContent = timeStamp;
 
   ////////////////////////////////////
   //DIRECTLY EDIT CREATED TASKTEXT
@@ -140,7 +141,8 @@ const addTask = (text) => {
     checkBox,
     text,
     // taskDate: taskDate.textContent,
-    taskDate,
+    // taskDate,
+    timeStamp,
   });
 };
 ////////////////////////
