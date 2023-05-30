@@ -80,7 +80,7 @@ const addTask = (text) => {
   taskDate.style.fontWeight = "400";
   taskDate.textContent = currentDate.toLocaleString([], {
     dateStyle: `medium`,
-    timeStyle: `short`,
+    timeStyle: `medium`,
   });
 
   ////////////////////////////////////
@@ -89,6 +89,7 @@ const addTask = (text) => {
   taskText.addEventListener("click", () => {
     taskText.contentEditable = true;
     taskText.focus();
+    updateLocalStorage();
   });
 
   ////////////////////////////////////
@@ -138,7 +139,8 @@ const addTask = (text) => {
     taskItem,
     checkBox,
     text,
-    taskDate: taskDate.textContent,
+    // taskDate: taskDate.textContent,
+    taskDate,
   });
 };
 ////////////////////////
