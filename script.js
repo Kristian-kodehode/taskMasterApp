@@ -73,7 +73,7 @@ const addTask = (text, timeStamp) => {
 // Create task item
 const createTaskItem = () => {
   const taskItem = document.createElement("li");
-  //Can use enter to go to next line when writing
+  //Text doesnt ignore line breaks by "enter"
   taskItem.style.whiteSpace = "pre-line";
   taskItem.classList.add("taskItemStyling");
   return taskItem;
