@@ -1,4 +1,28 @@
 "use strict";
+/*
+====================================
+//Issues:
+1. 
+Klarte ikke å få dato og tid til å beholde
+sin originale dato og tid ved refresh page.
+!!FIXED!!
+
+2.
+-
+
+Oppsumering.
+localStorage er fortsatt krevende. Jeg forstår 
+formålet og nytten i det, men det er å bruke det
+som gjør det litt utfordrende.
+Føles som at jeg overkompliserte løsning av oppgaven
+og koden kunne vært mer optimalisert. 
+Klarte til slutt å fikse time / date problemet, men
+det var mer komplisert enn som så. Krevde endel hjelp
+fra både google og chatGpt.
+====================================
+*/
+
+////////////////////////////////////
 
 // Fetch HTML elements
 const taskInput = document.querySelector("#inputType");
@@ -13,6 +37,8 @@ let myTasks = [];
 const updateLocalStorage = () => {
   localStorage.setItem("todo", JSON.stringify(myTasks));
 };
+
+////////////////////////////////////
 
 // Add task
 const addTask = (text, timeStamp) => {
@@ -46,6 +72,7 @@ const addTask = (text, timeStamp) => {
 // Create task item
 const createTaskItem = () => {
   const taskItem = document.createElement("li");
+  //Can use enter to go to next line when writing
   taskItem.style.whiteSpace = "pre-line";
   taskItem.classList.add("taskItemStyling");
   return taskItem;
@@ -97,7 +124,7 @@ const updateTaskText = (event) => {
   updateLocalStorage();
 };
 
-// Handle checkbox change event
+// Changes the visual of the checkbox by state
 const handleCheckBoxChange = (event) => {
   const checkBox = event.target;
   const taskItem = checkBox.parentNode;
@@ -124,6 +151,7 @@ const deleteTask = () => {
 };
 
 ////////////////////////////////////
+
 // Event handlers
 taskInput.addEventListener("input", () => {
   addTaskBtn.disabled = taskInput.value === "";
