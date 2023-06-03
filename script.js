@@ -1,153 +1,118 @@
 "use strict";
 
-/*
-====================================
-//Issues:
-1. 
-Klarte ikke å få dato og tid til å beholde
-sin originale dato og tid ved refresh page.
-
-2.
--
-
-Oppsumering.
-localStorage er fortsatt krevende. Jeg forstår 
-formålet og nytten i det, men det er å bruke det
-som gjør det litt utfordrende.
-Føles som at jeg overkompliserte løsning av oppgaven
-og koden kunne vært mer optimalisert. 
-====================================
-*/
-
-////////////////////////////////////
-//FETCH HTML ELEMENTS
-
+// Fetch HTML elements
 const taskInput = document.querySelector("#inputType");
 const addTaskBtn = document.querySelector("#inputSubmit");
 const taskList = document.querySelector("#taskList");
 const deleteButton = document.querySelector("#deleteButton");
 
-////////////////////////
-//DECLARE
+// Array to handle tasks
 let myTasks = [];
 
-////////////////////////
-//FUNCTION : UPDATE LOCALSTORAGE FOR EACH TASK ADDED
+// Update local storage for each task added
 const updateLocalStorage = () => {
   localStorage.setItem("todo", JSON.stringify(myTasks));
 };
 
+// Add task
 const addTask = (text, timeStamp) => {
-  const taskItem = document.createElement("li");
-  //Takes line breaks created with "enter" into account.
-  taskItem.style.whiteSpace = "pre-line";
-  //Related to styling of taskItem.
-  taskItem.classList.add("taskItemStyling");
+  const taskItem = createTaskItem();
+  const checkBox = createCheckBox();
+  const taskText = createTaskText(text);
+  const taskDate = createTaskDate(timeStamp);
 
-  ////////////////////////////////////
-  //CREATE CHECKBOX
-  const checkBox = document.createElement("input");
-  checkBox.type = "checkbox";
-  checkBox.name = "taskCheckBox";
-  checkBox.id = "myCheckbox";
-  checkBox.classList.add("custom-checkbox");
+  taskText.addEventListener("click", editTaskText);
+  taskText.addEventListener("input", updateTaskText);
 
-  ////////////////////////////////////
-  //SPAN FOR EACH TASK
-  const taskText = document.createElement("span");
-  taskText.textContent = text;
-
-  ////////////////////////////////////
-  //DATE AND TIME
-  const taskDate = document.createElement("div");
-  taskDate.style.fontSize = "12px";
-  taskDate.style.marginTop = "0.5em";
-  taskDate.style.fontWeight = "400";
-  taskDate.textContent = timeStamp;
-
-  ////////////////////////////////////
-  //DIRECTLY EDIT CREATED TASKTEXT
-  taskText.addEventListener("click", () => {
-    taskText.contentEditable = true;
-    taskText.focus();
-    updateLocalStorage();
-  });
-  ////////////////////////////////////
-  //UPDATES TASK WITH LATEST TEXT EDIT
-  taskText.addEventListener("input", () => {
-    myTasks.forEach((task) => {
-      if (task.taskItem === taskItem) {
-        task.text = taskText.textContent;
-      }
-    });
-    updateLocalStorage();
-  });
-
-  ////////////////////////////////////
-  //APPENDS
   taskItem.appendChild(checkBox);
   taskItem.appendChild(taskText);
   taskItem.appendChild(taskDate);
   taskList.appendChild(taskItem);
 
-  ////////////////////////////////////
-  //CHECKBOX EVENTHANDLING w/STYLING
-  checkBox.addEventListener("change", () => {
-    if (checkBox.checked) {
-      taskItem.style.backgroundColor = "#f4828c";
-      taskItem.style.color = "white";
-      taskItem.classList.add("shake-animation");
-    } else {
-      taskItem.style.backgroundColor = "";
-      taskItem.style.color = "";
-      taskItem.classList.remove("shake-animation");
-    }
-  });
+  checkBox.addEventListener("change", handleCheckBoxChange);
 
-  ////////////////////////////////////
-  //CLEARS INPUT FIELD
   taskInput.value = "";
 
-  ////////////////////////////////////
-  //PUSH ITEMS TO myTask
   myTasks.push({
     taskItem,
     checkBox,
     text,
     timeStamp,
   });
+
+  updateLocalStorage();
 };
 
-////////////////////////
-//FUNCTION : LOAD LOCALSTORAGE FOR EACH ITEM CREATED
-//Located here because addTask = arrow function.
-const loadFromLocalStorage = () => {
-  const todos = JSON.parse(localStorage.getItem("todo")) || [];
+// Create task item
+const createTaskItem = () => {
+  const taskItem = document.createElement("li");
+  taskItem.style.whiteSpace = "pre-line";
+  taskItem.classList.add("taskItemStyling");
+  return taskItem;
+};
 
-  for (const todo of todos) {
-    addTask(todo.text, todo.timeStamp);
+// Create checkbox
+const createCheckBox = () => {
+  const checkBox = document.createElement("input");
+  checkBox.type = "checkbox";
+  checkBox.name = "taskCheckBox";
+  checkBox.id = "myCheckbox";
+  checkBox.classList.add("custom-checkbox");
+  return checkBox;
+};
 
-    const { checkBox, taskItem } = myTasks[myTasks.length - 1];
+// Create task text
+const createTaskText = (text) => {
+  const taskText = document.createElement("span");
+  taskText.textContent = text;
+  return taskText;
+};
 
-    checkBox.addEventListener("change", () => {
-      if (checkBox.checked) {
-        taskItem.style.backgroundColor = "#f4828c";
-        taskItem.style.color = "white";
-        taskItem.classList.add("shake-animation");
-      } else {
-        taskItem.style.backgroundColor = "";
-        taskItem.style.color = "";
-        taskItem.classList.remove("shake-animation");
-      }
-    });
+// Create task date
+const createTaskDate = (timeStamp) => {
+  const taskDate = document.createElement("div");
+  taskDate.style.fontSize = "12px";
+  taskDate.style.marginTop = "0.5em";
+  taskDate.style.fontWeight = "400";
+  taskDate.textContent = timeStamp;
+  return taskDate;
+};
+
+// Directly edit tasktext
+const editTaskText = (event) => {
+  const taskText = event.target;
+  taskText.contentEditable = true;
+  taskText.focus();
+  updateLocalStorage();
+};
+
+// Updates task with latest text edit
+const updateTaskText = (event) => {
+  const taskText = event.target;
+  myTasks.forEach((task) => {
+    if (task.taskItem === taskText.parentNode) {
+      task.text = taskText.textContent;
+    }
+  });
+  updateLocalStorage();
+};
+
+// Handle checkbox change event
+const handleCheckBoxChange = (event) => {
+  const checkBox = event.target;
+  const taskItem = checkBox.parentNode;
+  if (checkBox.checked) {
+    taskItem.style.backgroundColor = "#f4828c";
+    taskItem.style.color = "white";
+    taskItem.classList.add("shake-animation");
+  } else {
+    taskItem.style.backgroundColor = "";
+    taskItem.style.color = "";
+    taskItem.classList.remove("shake-animation");
   }
 };
 
-loadFromLocalStorage();
-
-///////////////////////
-//FUNCTION : DELETE TASK
-
+// Delete task
 const deleteTask = () => {
   for (const { checkBox, taskItem } of myTasks) {
     if (checkBox.checked) {
@@ -155,11 +120,11 @@ const deleteTask = () => {
     }
   }
   myTasks = myTasks.filter((task) => !task.checkBox.checked);
+  updateLocalStorage();
 };
 
-///////////////////////
-//EVENT HANDLERS
-
+////////////////////////////////////
+// Event handlers
 taskInput.addEventListener("input", () => {
   addTaskBtn.disabled = taskInput.value === "";
 });
@@ -173,12 +138,22 @@ addTaskBtn.addEventListener("click", (event) => {
       timeStyle: "medium",
     });
     addTask(taskInput.value, timeStamp);
-    updateLocalStorage();
     taskInput.value = "";
   }
 });
 
 deleteButton.addEventListener("click", () => {
   deleteTask();
-  updateLocalStorage();
 });
+
+////////////////////////////////////
+// Load tasks from local storage
+const loadFromLocalStorage = () => {
+  const storedTasks = JSON.parse(localStorage.getItem("todo")) || [];
+
+  for (const storedTask of storedTasks) {
+    addTask(storedTask.text, storedTask.timeStamp);
+  }
+};
+
+loadFromLocalStorage();
