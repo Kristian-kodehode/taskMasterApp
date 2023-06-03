@@ -39,6 +39,7 @@ const updateLocalStorage = () => {
 };
 
 ////////////////////////////////////
+// FUNCTIONS
 
 // Add task
 const addTask = (text, timeStamp) => {
@@ -151,12 +152,14 @@ const deleteTask = () => {
 };
 
 ////////////////////////////////////
+//EVENT HANDLERS
 
-// Event handlers
+// Task input field
 taskInput.addEventListener("input", () => {
   addTaskBtn.disabled = taskInput.value === "";
 });
 
+// Add task button
 addTaskBtn.addEventListener("click", (event) => {
   if (taskInput.value === "") {
     event.preventDefault();
@@ -170,6 +173,7 @@ addTaskBtn.addEventListener("click", (event) => {
   }
 });
 
+// Delete task button
 deleteButton.addEventListener("click", () => {
   deleteTask();
 });
