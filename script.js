@@ -89,7 +89,7 @@ const createCheckBox = () => {
   return checkBox;
 };
 
-// Create task text
+// Create task text that is inside the task item
 const createTaskText = (text) => {
   const taskText = document.createElement("span");
   taskText.textContent = text;
