@@ -8,10 +8,15 @@
 }
 
 body {
+  height: 100vh;
   color: #775d6a;
   font-weight: 800;
   background-color: #e3e5ff;
-  background-image: ;
+  background-image: url("images/Dust_011_02\ Small.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: overlay;
+  overflow: hidden;
 }
 
 .container {
