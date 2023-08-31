@@ -22,17 +22,12 @@ body {
   min-height: 100px;
   /* background-color: aliceblue; */
   background-color: #fdcfb7;
-
   border: 1px solid #775d6a;
   margin: 50px auto;
   padding: 2em;
   border-radius: 1em;
   transition: 1s;
   box-shadow: 6px 6px 1px;
-  /* background-image: url("images/Dust_011_02\ Small.jpeg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-blend-mode: lighten; */
 }
 
 h3 {
