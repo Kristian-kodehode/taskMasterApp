@@ -10,13 +10,15 @@ body {
   color: #775d6a;
   font-weight: 800;
   background-color: #e3e5ff;
+}
+/* .bodycontainer {
   background-image: url("images/dusttexture.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
   background-blend-mode: overlay;
   overflow: hidden;
-}
-
+  height: 100vh;
+} */
 .container {
   width: 250px;
   min-height: 100px;

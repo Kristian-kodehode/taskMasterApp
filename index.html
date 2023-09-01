@@ -19,29 +19,31 @@
     <title>Taskmaster App</title>
   </head>
   <body>
-    <div class="container">
-      <form action="">
-        <h3>Taskmaster</h3>
-        <textarea
-          name=""
-          id="inputType"
-          cols="25"
-          rows="6"
-          maxlength="120"
-          placeholder="Enter task"
-        ></textarea>
-      </form>
-      <div class="submitButtons">
-        <input
-          type="submit"
-          id="inputSubmit"
-          class="input-submit"
-          disabled
-          value="Add Task"
-        />
-        <button id="deleteButton" class="input-submit">Delete task</button>
+    <div class="bodycontainer">
+      <div class="container">
+        <form action="">
+          <h3>Taskmaster</h3>
+          <textarea
+            name=""
+            id="inputType"
+            cols="25"
+            rows="6"
+            maxlength="120"
+            placeholder="Enter task"
+          ></textarea>
+        </form>
+        <div class="submitButtons">
+          <input
+            type="submit"
+            id="inputSubmit"
+            class="input-submit"
+            disabled
+            value="Add Task"
+          />
+          <button id="deleteButton" class="input-submit">Delete task</button>
+        </div>
+        <ul id="taskList"></ul>
       </div>
-      <ul id="taskList"></ul>
     </div>
   </body>
 </html>
